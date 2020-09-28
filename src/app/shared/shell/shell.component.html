@@ -1,0 +1,56 @@
+<!-- these links will still show even though we removed then from the app.component.html because we have
+Injected our module dependency into the maim app module, we know have access to evrything inside the shared module-->
+ <!-- kinda like adding a nav bar that we wil need to changes later on. links  for the two routes to live on -->
+<!-- ul>li*3  shortcut to get -->
+<!-- 
+ if theses don't show as links recompile 
+<ul>
+ don't not use href here as Angular has its own command routerLink 
+    <li><a routerLink="/reference">Reference Code</a></li>
+    <li><a routerLink="/home">ToDo Home</a></li>
+</ul> -->
+
+<!-- known as Transclusion in Angular- without this the reference code page info is not displayed
+<ng-content></ng-content>-->
+
+<!--tHIS STYLING IN WEEK 7 DAY 3 AFTERNOON SESSION-->
+<mat-sidenav-container class="sidenav-container">    ​
+        <!--SideNav-->
+        <mat-sidenav #drawer class="sidenav" fixedInViewport
+            [attr.role] = "(isHandset$ | async) ? 'dialog': 'navigation' "
+            [mode] = "(isHandset$ | async) ? 'over' : 'side' "
+            [opened] = "false"
+        >
+            <mat-toolbar>Menu</mat-toolbar>
+            <mat-nav-list>
+                <a mat-list-item routerLink="/home" (click)="drawer.close()">Home</a>
+                <a mat-list-item routerLink="/reference" (click)="drawer.close()">Reference Code</a>
+            </mat-nav-list>    ​
+        </mat-sidenav>
+
+
+        <mat-sidenav-content>
+            <!--Top Toolbar-->    ​
+            <mat-toolbar>
+                <button type="button"
+                    aria-label="Toggle sidenav"
+                    mat-icon-button
+                    (click)="drawer.toggle()"
+                    *ngIf = "isHandset$ | async"
+                ><mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                </button>    ​
+
+                <span class="logo" routerLink="/home">Coding Temple Todo</span>
+                <span class="fill-space"></span>
+                <!-- if this is NOT a hand set show this-->
+                <div *ngIf="!(isHandset$ | async)">
+                    <a mat-button routerLink="/home">Home</a>
+                    <a mat-button routerLink="/reference">Reference Code</a>
+                </div>
+            </mat-toolbar>
+
+            <!--Transclusion in Angular-->
+            <ng-content></ng-content>
+    ​
+        </mat-sidenav-content>
+</mat-sidenav-container>

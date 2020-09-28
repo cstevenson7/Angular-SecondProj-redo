@@ -1,0 +1,20 @@
+<h1>Create a new Weather Form below:</h1>
+
+    <!-- need to add the form group and an event emitter for the form handler -->
+    <!-- not using this (ngSubmit)= "onSubmit()" here because we are just writing to
+    the console not sending the data anywhere -->
+<form [formGroup]= "weatherForm"  >
+    <label for="cityName">City Name</label>
+    <input type="text" formControlName = "cityName">
+
+    <label for="cityDescription">City Description</label>
+    <!-- using the ngModel Directive  like python built_ins-->
+    <input [(ngModel)]="cityDescriptionDisplay" type="text" formControlName = "cityDescription">
+    <p>{{ cityDescriptionDisplay }}</p>
+
+    <label for="cityTemp">City Temperature</label>
+    <input type="text" formControlName = "cityTemp">
+
+    <button type="button" (click)="onSubmit()">Submit Button</button>
+
+</form>

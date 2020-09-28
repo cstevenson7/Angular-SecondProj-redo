@@ -1,0 +1,52 @@
+
+<h1>{{ hello }}</h1>
+
+<!-- template statement  or click event emitter to fire the display method from app.component.ts -->
+<button (click) = "displayLanguage()"> Display Language Button</button>
+
+<!-- this is showing what is happening -->
+<button (click) = "displayEvent($event)"> Display Mouse Event</button>
+
+<!-- Built in directives like a for loop known as ng4 -->
+<h1>Angular Directives</h1>
+<h2>*ngFor Directive</h2>
+<p>ngFor Loops over iterable onjects such as arrays and object literals
+    to display the data that is inside of these objects
+</p>
+
+<!--List items of data- adding the ngFor directive to loop through our dummy food data-->
+
+<!-- creating a variable named food that is coming from foods (defined in app.component.ts)  -->
+ <!-- double handle bars is interpolation or how we display the data -->
+ <!--this displays all of the food data, each of the objects in the array, so all 6 items-->
+<!-- <ul *ngFor = "let food of foods">
+   
+    <li>{{ food.item1 }}</li>
+    <li>{{ food.item2 }}</li>
+    <li>{{ food.item3 }}</li>
+</ul> -->
+<!-- can also see and set an index  and display it -->
+<ul *ngFor = "let food of foods; let i = index">
+   
+    <li>{{ food.item1 }}, {{ i }}</li>
+    <li>{{ food.item2 }}, {{ i }}</li>
+    <li>{{ food.item3 }}, {{ i }}</li>
+</ul>
+
+<!-- if you want to display you data depending on the condition - another directive -->
+<h2>*ngIf Directive</h2>
+<p> ngIf will conditionally show content on the page, assumimg the condition is true</p>
+
+<h4 *ngIf= "name == 'Joel'">Display User: {{ name }}</h4>
+
+<!-- two way data binding means there is a listener on the page
+ will display the data on another area of the page like a preview -->
+ <div>
+     <h1>Two way data binding</h1>
+     <p>Two way data binding allows information to be changed and 
+         displayed at the same time
+     </p>
+     <button (click)="increment()">Increase Size</button>
+     <button (click)="decrement()">Decrease</button>
+     <label [style.font-size.px] = "size">FontSize: {{ size }}px</label>
+ </div>
